@@ -1,0 +1,50 @@
+.custom-select {
+width: 350px;
+margin: 0 auto;
+font-family: Arial, sans-serif;
+}
+
+.select-dropdown {
+    display: none; /* Mặc định ẩn */
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 10;
+    width: 500px;
+}
+
+.select-dropdown.open {
+    display: block; /* Hiện khi có class open */
+}
+
+.select-btn{
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+}
+.select-btn:hover{
+    background-color: #a8a8a8;
+}
+
+.select-item {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.select-item:hover {
+    background: #f0f0f0;
+}
+
+.system-name {
+font-weight: bold;
+}
+
+.ip-address {
+color: #555;
+font-size: 0.9em;
+}

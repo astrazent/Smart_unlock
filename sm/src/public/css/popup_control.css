@@ -1,0 +1,433 @@
+/* Thông báo thành công trong 5s */
+.notification {
+    display: none; /* Ẩn thông báo theo mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Thông báo mở cửa */
+.modal {
+    display: none; /* Ẩn modal theo mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền tối */
+}
+
+.modal-content {
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Thông báo thêm vân tay */
+.modal2 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.modal-content2 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.modal2-title{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+.modal2-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px; /* Bo góc cho button */
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal2-btn:hover {
+    background-color: #0056b3;
+}
+
+.close2 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+/* Thông báo xoá vân tay */
+.modal3 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.modal-content3 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close3 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+/* Thông báo thay đổi mật khẩu */
+.modal4 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.modal-content4 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close4 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+/* form của thêm vân tay */
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="tel"],
+form input[type="email"],
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inline-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.inline-group div {
+    flex: 1;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 !important;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* form xoá vân tay */
+/* style.css */
+.delete-container {
+    width: 400px;
+    height: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow-y: auto;
+}
+.delete-container2 {
+    width: 400px;
+    height: auto;
+    background-color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow-y: auto;
+}
+.modal3 h4 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modal3 button {
+    width: 100px;
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#backButton {
+    background-color: #cccccc;
+    color: black;
+}
+
+#backButton:hover {
+    background-color: #b3b3b3;
+}
+
+#confirmButton-delete {
+    background-color: #007BFF;
+    color: white;
+}
+
+#confirmButton-delete:hover {
+    background-color: #0056b3;
+}
+
+/* Thông báo thành công */
+.notification-delete {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1000;
+}
+
+
+
+/* form thay đổi mật khẩu */
+.password-container {
+    width: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#confirmButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    margin: 0 !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Thông báo khi nhấn nút xác nhận */
+.notification-password {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.bi-fingerprint{
+    font-size: 100px;
+}
+.fa-keyboard{
+    font-size: 70px;
+}
+
+.tableContainer{
+    height: 500px;
+    overflow: auto;
+}
+.ownerSelect{
+    height: 200px;
+    overflow: auto;
+}
+
+/* Áp dụng cho toàn bộ trang */
+html {
+    scrollbar-width: thin; /* Độ rộng mỏng hơn cho Firefox */
+    scrollbar-color: #007BFF #f1e3d3; /* Màu nâu cho thanh cuộn và màu be nhạt cho nền */
+}
+
+/* Thanh cuộn cho trình duyệt WebKit (Chrome, Safari, Edge) */
+html::-webkit-scrollbar {
+    width: 4px; /* Độ rộng mỏng hơn của thanh cuộn dọc */
+    height: 4px; /* Chiều cao mỏng hơn của thanh cuộn ngang */
+}
+
+html::-webkit-scrollbar-track {
+    background: #f1e3d3; /* Màu nền của track */
+    border-radius: 20px; /* Bo tròn track */
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #007BFF; /* Màu thanh cuộn nâu */
+    border-radius: 20px; /* Bo tròn thanh cuộn */
+    border: 1px solid #f1e3d3; /* Viền xung quanh thanh cuộn để thêm hiệu ứng thon gọn */
+}
+
+/* Màu thanh cuộn khi hover */
+html::-webkit-scrollbar-thumb:hover {
+    background-color: #A0522D; /* Màu nâu đậm hơn khi hover */
+}
+
+select {
+    width: 200px; /* Chiều rộng của thẻ select */
+    overflow-y: auto; /* Thêm thanh cuộn dọc */
+}

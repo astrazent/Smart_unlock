@@ -1,0 +1,778 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* loại bỏ hiệu ứng bôi đen */
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard syntax */
+}
+
+/* Áp dụng cho toàn bộ trang */
+html {
+    scrollbar-width: thin; /* Độ rộng mỏng hơn cho Firefox */
+    scrollbar-color: #007BFF #f1e3d3; /* Màu nâu cho thanh cuộn và màu be nhạt cho nền */
+}
+
+/* Thanh cuộn cho trình duyệt WebKit (Chrome, Safari, Edge) */
+html::-webkit-scrollbar {
+    width: 4px; /* Độ rộng mỏng hơn của thanh cuộn dọc */
+    height: 4px; /* Chiều cao mỏng hơn của thanh cuộn ngang */
+}
+
+html::-webkit-scrollbar-track {
+    background: #f1e3d3; /* Màu nền của track */
+    border-radius: 20px; /* Bo tròn track */
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #007BFF; /* Màu thanh cuộn nâu */
+    border-radius: 20px; /* Bo tròn thanh cuộn */
+    border: 1px solid #f1e3d3; /* Viền xung quanh thanh cuộn để thêm hiệu ứng thon gọn */
+}
+
+/* Màu thanh cuộn khi hover */
+html::-webkit-scrollbar-thumb:hover {
+    background-color: #A0522D; /* Màu nâu đậm hơn khi hover */
+}
+
+/* Body styling */
+body {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #7FC7D9;
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed; /* Giữ navbar cố định */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #DCF2F1;
+    height: 80px;
+    padding: 0 50px;
+    color: #fff;
+}
+
+/* Logo styling */
+.logo img{
+    width: 80px;
+}
+
+/* Center navigation items */
+.center-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Navigation items styling */
+.nav-items {
+    display: flex;
+    list-style: none;
+    gap: 120px;
+}
+
+.nav-items li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.nav-items li a:hover {
+    color: #0F67B1;
+}
+
+/* Active item styling */
+.nav-items li a.active {
+    background-color: #007bff; /* Màu nền cho mục active */
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px; /* Tạo khoảng cách 10px giữa viền và nội dung */
+}
+
+/* Avatar styling */
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* CSS hộp chứa */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa */
+    margin-top: 60px;         /* Để tránh che khuất bởi navbar */
+    width: 1000px;
+    height: 500px; /* Độ rộng của container */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .title{
+    text-align: center;
+    font-size: 30;
+}
+
+/* CSS các nút bấm */
+.box-btn{
+    margin-top: 170px;
+    display: grid;             /* Sử dụng Grid Layout */
+    grid-template-columns: repeat(2, 1fr); /* 2 cột đều nhau */
+    gap: 20px;                /* Khoảng cách giữa các nút */
+}
+
+.btn {
+    margin: 10px 0; /* Khoảng cách giữa các nút */
+    padding: 10px 20px;
+    height: 50px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF; /* Màu nền của nút */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Màu khi di chuột qua nút */
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+/* Lớp phủ đen */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    display: none; /* Ẩn lớp phủ ban đầu */
+}
+
+
+/* Email nhận tin nhắn */
+#emailReceive {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa h5 và span */
+    margin-bottom: 10px;
+}
+
+#emailReceive h5 {
+    margin: 0; /* Loại bỏ khoảng cách mặc định của h5 */
+    font-size: 17px;
+}
+
+#emailReceive span {
+    font-size: 16px;
+    color: #464545;
+}
+
+#emailReceive button {
+    margin: 0 10px; /* Khoảng cách giữa các nút */
+    padding: 5px 10px;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: #007BFF; /* Màu nền của nút */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#emailReceive button:hover {
+    background-color: #0056b3; /* Màu khi di chuột qua nút */
+}
+
+#emailForm {
+    margin-top: 10px;
+}
+
+#emailForm h5 {
+    font-size: 17px;
+}
+#emailForm input {
+    width: 250px;   
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+    margin: 10px 0 20px 0;
+}
+
+#emailForm button {
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+    padding: 5px 10px;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: #007BFF; /* Màu nền của nút */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#emailForm button:hover {
+    background-color: #0056b3; /* Màu khi di chuột qua nút */
+}
+
+/* Thông báo thành công hoặc lỗi khi nhập email */
+#messageBox {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.success {
+    background-color: #d4edda; /* Màu nền xanh nhạt */
+    color: #155724; /* Màu chữ xanh đậm */
+}
+
+.error {
+    background-color: #f8d7da; /* Màu nền đỏ nhạt */
+    color: #721c24; /* Màu chữ đỏ */
+}
+
+/* Style cho container của thông báo */
+.notification-container {
+    width: 550px;
+    height: 280px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Style cho header của thông báo */
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.notification-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-button {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Style cho nội dung của thông báo */
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style cho nút gạt bật/tắt */
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* Khi checkbox được bật */
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Thông báo quản lý danh sách người dùng */
+.modal3 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+.modal3 h4 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+.modal-content3 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close3 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+.tableContainer{
+    height: 500px;
+    overflow: auto;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Thông báo lịch sử mở cửa */
+.modal4 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+.modal4 h4 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+.modal-content4 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close4 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+.tableContainer{
+    height: 500px;
+    overflow: auto;
+}
+
+#searchInput2 {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Thông báo lịch sử thao tác */
+.modal5 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+.modal5 h4 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+.modal-content5 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close5 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+.tableContainer{
+    height: 500px;
+    overflow: auto;
+}
+
+#searchInput3 {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* Quản lý hệ thống cửa */
+.modal6 {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed; /* Giữ modal cố định */
+    z-index: 1001; /* Đảm bảo modal nằm trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn bộ màn hình */
+    height: 100%; /* Chiều cao toàn bộ màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+.modal6 h4 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+.modal-content6 {
+    background-color: white; /* Màu nền của thông báo */
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; /* Để có thể sử dụng absolute cho nút đóng */
+}
+
+.close6 {
+    position: absolute; /* Đặt vị trí nút đóng */
+    top: 10px; /* Cách từ trên xuống */
+    right: 10px; /* Cách từ bên trái */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    font-size: 24px; /* Kích thước chữ cho nút đóng */
+}
+
+.tableContainer{
+    height: 500px;
+    overflow: auto;
+}
+
+#searchInput4 {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* ----------------------------------------------------------Kiểm soát trạng thái hệ thống----------------------------------------------- */
+
+/* Container chính */
+.custom-notification-container {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    width: 600px; /* Tăng độ rộng container */
+    max-width: 90%;
+    position: absolute; /* Căn giữa với absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Header */
+.custom-header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.close-button2{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.custom-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Email cố định */
+.custom-email-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.custom-email-label {
+    color: #555;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.custom-email-value {
+    color: #333;
+    font-size: 16px;
+}
+
+.custom-change-email-btn {
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.custom-change-email-btn:hover {
+    background-color: #40a9ff;
+}
+
+/* Form thay đổi email */
+.custom-email-input {
+    width: 93%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.custom-form-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.custom-save-email-btn,
+.custom-cancel-email-btn {
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.custom-save-email-btn:hover {
+    background-color: #40a9ff;
+}
+
+.custom-cancel-email-btn {
+    background-color: #ff4d4f;
+}
+
+.custom-cancel-email-btn:hover {
+    background-color: #ff7875;
+}
+
+/* Danh sách tên */
+.custom-names-list {
+    margin-top: 10px;
+}
+
+.custom-name-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-name-item {
+    display: grid;
+    grid-template-columns: 1fr auto; /* Cột 1 chiếm hết chiều rộng, cột 2 tự điều chỉnh */
+    grid-template-rows: auto auto auto; /* Mỗi hàng có chiều cao tự động */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.custom-name-text {
+    grid-column: 1; /* Ở cột đầu tiên */
+}
+
+.custom-toggle-switch {
+    grid-column: 2; /* Ở cột thứ hai */
+}
+
+.custom-email-section {
+    grid-column: 1 / -1; /* Trải rộng cả 2 cột */
+}
+
+.custom-email-form {
+    grid-column: 1 / -1; /* Trải rộng cả 2 cột */
+    display: flex; /* Nội dung trong form có thể xếp ngang */
+    gap: 10px; /* Khoảng cách giữa các phần tử trong form */
+}
+
+.custom-name-item:hover {
+    background: #e6f7ff;
+}
+
+.custom-name-text {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Toggle switch */
+.custom-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.custom-toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.custom-toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 25px;
+}
+
+.custom-toggle-slider:before {
+    position: absolute;
+    content: '';
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.custom-toggle-checkbox:checked + .custom-toggle-slider {
+    background-color: #4caf50;
+}
+
+.custom-toggle-checkbox:checked + .custom-toggle-slider:before {
+    transform: translateX(25px);
+}
+
+/* Thông báo thành công */
+.notification-temp {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1000;
+}

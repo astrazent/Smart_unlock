@@ -1,0 +1,197 @@
+insert(pos, value): 
++ pos: vị trí bắt đầu
++ value: giá trị muốn chèn vào
++ begin(): trả về giá trị là phần tử đầu tiên của chuỗi (hoặc vector)
++ end(): không trả về giá trị cụ thể, trả về vị trí sau giá trị cuối cùng (đảm bảo duyệt qua toàn bộ phần tử)
+
+
+erase(pos, value):
+vec.erase(vec.begin() + 1);  // Xóa phần tử thứ 2
+
+
+vector:
+Cú pháp: vector<int> vec (tạo một vector vec có kiểu dữ liệu là int)
+
+Khởi tạo:
+vector<int> vec = {1, 2, 3, 4};  // Khởi tạo vector với các phần tử 1, 2, 3, 4
+vector<int> vec(5, 10);  // Tạo vector với 5 phần tử, mỗi phần tử có giá trị 10
+
+thêm phần tử:
+vector<int> vec;  // Tạo vector rỗng
+vec.push_back(10);  // Thêm phần tử 10 vào cuối vector
+
+xoá phần tử cuối cùng:
+vec.pop_back();  // Xóa phần tử cuối cùng trong vector
+
+xoá toàn bộ phần tử trong vector
+vec.clear();  // Xóa tất cả các phần tử trong vector
+
+
+truy cập phần tử:
+vector<int> vec = {10, 20, 30, 40};
+cout << vec[2];  // In ra phần tử thứ 3 (30)
+
+lấy kích thước:
+cout << vec.size();  // In ra số phần tử trong vector
+
+hoán đổi nội dung giữa 2 vector
+vector<int> vec1 = {1, 2, 3};
+vector<int> vec2 = {4, 5, 6};
+vec1.swap(vec2);  // Hoán đổi vec1 và vec2
+
+
+Cách nạp chồng toán tử input output
+friend istream &operator >> (istream &is, SinhVien &t) {
+    getline(is, t.name);        // Nhập tên (bao gồm khoảng trắng)
+    getline(is, t.room);        // Nhập phòng
+    getline(is, t.bd);          // Nhập ngày sinh (dạng chuỗi)
+    is >> t.gpa;                // Nhập điểm GPA (số thực)
+
+    // Định dạng lại ngày sinh (nếu thiếu số 0 ở ngày/tháng)
+    if (t.bd[2] != '/') t.bd.insert(t.bd.begin(), '0');
+    if (t.bd[5] != '/') t.bd.insert(t.bd.begin() + 3, '0');
+
+    return is; // Trả về luồng để tiếp tục sử dụng
+}
+friend ostream &operator << (ostream &os, SinhVien &t) {
+    os << t.msv << " " << t.name << " " << t.room << " " 
+       << t.bd << " " << fixed << setprecision(2) << t.gpa;
+    return os; // Trả về luồng để tiếp tục sử dụng
+}
+
+
+
+Kiến thức về con trỏ
+Tham chiếu (Reference)
+int a = 10;
+int &ref = a; // ref là tham chiếu đến a
+
+ref = 20; // Gán giá trị qua ref cũng thay đổi giá trị của a
+cout << a; // Kết quả: 20
+
+Lấy địa chỉ (Address-of)
+int a = 10;
+int *ptr = &a; // Lấy địa chỉ của a và gán cho con trỏ ptr
+
+cout << ptr;  // In địa chỉ của a
+cout << *ptr; // Truy cập giá trị của a thông qua con trỏ
+
+Truyền tham chiếu vào hàm
+void modifyValue(int &x) {
+    x = 42; // Thay đổi giá trị của biến gốc
+}
+
+int main() {
+    int a = 10;
+    modifyValue(a); // Truyền tham chiếu
+    cout << a; // Kết quả: 42
+    return 0;
+}
+
+ Kết hợp với hàm trả về tham chiếu
+ int& getValue(int &x) {
+    return x;
+}
+
+int main() {
+    int a = 10;
+    int &b = getValue(a); // b là tham chiếu đến a
+    b = 20; // Thay đổi b cũng thay đổi a
+    cout << a; // Kết quả: 20
+    return 0;
+}
+
+UCLN, BCNN
+// Hàm tìm UCLN bằng thuật toán Euclid
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b; // Lấy phần dư
+        a = temp; // Cập nhật giá trị
+    }
+    return a;
+}
+
+// Hàm tính BCNN
+int lcm(int a, int b) {
+    return (a / gcd(a, b)) * b; // Công thức tính BCNN
+}
+
+nạp chồng toán tử cộng, trừ
+PhanSo operator+(const PhanSo &a) {
+    // Tính tử số mới và mẫu số mới của phân số tổng
+    long long tu_moi = this->tu * a.mau + a.tu * this->mau;
+    long long mau_moi = this->mau * a.mau;
+
+    // Tạo đối tượng phân số mới với tử số và mẫu số tính được
+    PhanSo result(tu_moi, mau_moi);
+
+    // Rút gọn phân số kết quả
+    result.rutgon();
+
+    // Trả về đối tượng phân số đã rút gọn
+    return result;
+}
+
+Tính tổng các chữ số trong file (vào ra trên file)
+int calc(string &s)
+{
+    if(s.length() > 9) return 0;
+    ll n = 0;
+    for(char i : s)
+    {
+        if(!isdigit(i)) return 0;
+        n = n * 10 + i - '0';
+    }
+    if(n <= 2147483647) return (int) n;
+    return 0;
+}
+
+int main()
+{
+    faster();
+    ifstream fin("DATA.in");
+    string s;
+    ll sum = 0;
+    while(fin >> s) sum += calc(s);
+    cout << sum;
+    return 0;
+}
+
+sao chép tệp tin từ ptit.in sang ptit.out
+#include <iostream>
+#include <fstream> // Thư viện để thao tác với file
+using namespace std;
+
+int main() {
+    // Mở tệp PTIT.in để đọc
+    ifstream infile("PTIT.in");
+    
+    // Kiểm tra nếu tệp không mở được
+    if (!infile) {
+        cerr << "Khong the mo tep PTIT.in" << endl;
+        return 1; // Thoát chương trình nếu không mở được tệp
+    }
+
+    // Mở tệp PTIT.out để ghi
+    ofstream outfile("PTIT.out");
+    
+    // Kiểm tra nếu tệp không mở được
+    if (!outfile) {
+        cerr << "Khong the mo tep PTIT.out" << endl;
+        return 1; // Thoát chương trình nếu không mở được tệp
+    }
+
+    // Đọc từng dòng từ PTIT.in và ghi vào PTIT.out
+    string line;
+    while (getline(infile, line)) {
+        outfile << line << endl; // Ghi từng dòng vào PTIT.out
+    }
+
+    // Đóng tệp
+    infile.close();
+    outfile.close();
+
+    cout << "Sao chep thanh cong!" << endl;
+    return 0;
+}

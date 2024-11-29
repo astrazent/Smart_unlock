@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* loại bỏ hiệu ứng bôi đen */
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard syntax */
+}
+
+/* Body styling */
+body {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #7FC7D9;
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed; /* Giữ navbar cố định */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #DCF2F1;
+    height: 80px;
+    padding: 0 50px;
+    color: #fff;
+}
+
+/* Logo styling */
+.logo img{
+    width: 80px;
+}
+
+/* Center navigation items */
+.center-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Navigation items styling */
+.nav-items {
+    display: flex;
+    list-style: none;
+    gap: 120px;
+}
+
+.nav-items li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.nav-items li a:hover {
+    color: #0F67B1;
+}
+
+/* Active item styling */
+.nav-items li a.active {
+    background-color: #007bff; /* Màu nền cho mục active */
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px; /* Tạo khoảng cách 10px giữa viền và nội dung */
+}
+
+/* Avatar styling */
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* CSS hộp chứa */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa */
+    margin-top: 60px;         /* Để tránh che khuất bởi navbar */
+    width: 1000px;
+    height: 500px; /* Độ rộng của container */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30;
+}
+
+/* CSS các nút bấm */
+.box-btn{
+    margin-top: 170px;
+    display: grid;             /* Sử dụng Grid Layout */
+    grid-template-columns: repeat(2, 1fr); /* 2 cột đều nhau */
+    gap: 20px;                /* Khoảng cách giữa các nút */
+}
+
+.btn {
+    margin: 10px 0; /* Khoảng cách giữa các nút */
+    padding: 10px 20px;
+    height: 50px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF; /* Màu nền của nút */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Màu khi di chuột qua nút */
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#overlay {
+    position: fixed;      /* Giữ lớp phủ ở vị trí cố định khi cuộn trang */
+    top: 0;
+    left: 0;
+    width: 100vw;         /* Chiều rộng toàn màn hình */
+    height: 100vh;        /* Chiều cao toàn màn hình */
+    background-color: rgba(0, 0, 0, 0);  /* Tàng hình với màu nền trong suốt */
+    z-index: 9999;        /* Đảm bảo lớp phủ nằm trên các thành phần khác */
+}
+
+
+

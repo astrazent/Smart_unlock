@@ -1,0 +1,38 @@
+{
+  "name": "mo-cua-thong-minh",
+  "version": "1.0.0",
+  "description": "Du an mo cua thong minh bang mat khau va van tay",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astrazent/IOT_projectt.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Nhom BTL 4 (Phuong Nam - Tien Duy - Van Nam)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astrazent/IOT_projectt/issues"
+  },
+  "homepage": "https://github.com/astrazent/IOT_projectt#readme",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "16.0.3",
+    "ejs": "3.1.8",
+    "express": "4.18.2",
+    "mysql2": "2.3.3",
+    "nodemailer": "6.9.16",
+    "undici": "6.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.20"
+  }
+}

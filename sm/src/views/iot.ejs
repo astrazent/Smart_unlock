@@ -1,0 +1,207 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mở cửa thông minh</title>
+        <link rel="stylesheet" href="/css/iot.css" />
+        <link rel="stylesheet" href="/css/systemManagement.css">
+        <link rel="stylesheet" href="/css/popup_control.css" />
+        <link rel="stylesheet" href="/css/notification.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="../images/logo.png" alt="" />
+            </div>
+
+            <!-- Center Navigation Items -->
+            <div class="center-nav">
+                <ul class="nav-items">
+                    <li><a href="/" class="active">Điều khiển</a></li>
+                    <li><a href="/caNhan">Cá nhân</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                </ul>
+            </div>
+
+            <!-- Avatar -->
+            <div class="avatar">
+                <img src="../images/avatar.png" alt="Avatar" />
+            </div>
+        </nav>
+        <div class="container">
+            <h3 class="title">Mở cửa thông minh</h3>
+            <!-- Lựa chọn hệ thống -->
+            <div class="custom-select">
+                <button class="select-btn">Chọn hệ thống</button>
+                <div class="select-dropdown">
+                </div>
+            </div>
+            <!-- ------------- Nút chức năng -------------------------------- -->
+            <div class="box-btn">
+                <button id="buttonA" class="show-message-button btn">Mở cửa</button>
+                <button id="buttonB" class="btn">Thêm vân tay</button>
+                <button id="buttonC" class="show-message-button2 btn">Xoá vân tay</button>
+                <button id="buttonD" class="show-message-button3 btn">Thay đổi mật khẩu</button>
+            </div>
+        </div>
+
+        <!-- thông báo thêm vân tay -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2>Thêm vân tay</h2>
+                <form id="infoForm">
+                    <label for="ownerSelect">Chọn chủ sở hữu:</label>
+                    <select id="ownerSelect" name="ownerSelect" required onchange="toggleOwnerInput()">
+                    </select>
+                
+                    <!-- Input này chỉ hiện ra khi người dùng chọn "Khác" -->
+                    <div id="newOwnerDiv" style="display: none;">
+                        <label for="newOwner">Tên chủ sở hữu mới:</label>
+                        <input type="text" id="newOwner" name="newOwner" />
+                    </div>
+                    
+                    <label for="hand">Tên bàn tay:</label>
+                    <select id="hand" name="hand" required>
+                        <option value="">Chọn bàn tay</option>
+                        <option value="Tay trái">Tay trái</option>
+                        <option value="Tay phải">Tay phải</option>
+                    </select>
+                    <label for="finger">Tên ngón tay:</label>
+                    <select id="finger" name="finger" required>
+                        <option value="">Chọn ngón tay</option>
+                        <option value="Ngón cái">Ngón cái</option>
+                        <option value="Ngón trỏ">Ngón trỏ</option>
+                        <option value="Ngón giữa">Ngón giữa</option>
+                        <option value="Ngón áp út">Ngón áp út</option>
+                        <option value="Ngón út">Ngón út</option>
+                    </select>
+                    <!-- Phần chứa thông tin cá nhân -->
+                    <div class="information">
+                        <!-- Phần còn lại của form -->
+                        <div class="inline-group">
+                            <div>
+                                <label for="gender">Giới tính:</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Chọn giới tính</option>
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                    
+                            <div>
+                                <label for="age">Tuổi:</label>
+                                <input type="number" id="age" name="age" min="1" required />
+                            </div>
+                        </div>
+                        
+                        <label for="phone">Số điện thoại:</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required />
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <button class="modal-btn" type="submit">Tiếp tục</button>
+                </form>
+            </div>
+            
+            <div id="modal2-confirmationContainer2" class="delete-container2" style="display: none">
+                <h2 class="modal2-confirm-title2"></h2>
+            </div>
+        </div>
+
+        <!-- thông báo thành công -->
+        <div class="notifications"></div>
+
+        <!-- thông báo mở cửa -->
+        <div class="modal2">
+            <div class="modal-content2">
+                <span class="close2">&times;</span>
+                <h4 class="modal2-title">Chọn phương thức mở cửa</h4>
+                <button class="modal2-btn modal2-btn-finger">Mở cửa bằng vân tay</button>
+                <button class="modal2-btn modal2-btn-pass">Mở cửa bằng mật khẩu</button>
+            </div>
+
+            <div id="modal2-confirmationContainer" class="delete-container" style="display: none">
+                <h2 class="modal2-confirm-title"></h2>
+            </div>
+        </div>
+
+        <!-- thông báo xoá vân tay -->
+        <div class="modal3">
+            <div class="modal-content3">
+                <!-- Container chính chứa trường tìm kiếm và bảng vân tay -->
+                <div id="fingerprintContainer">
+                    <span class="close3">&times;</span>
+                    <h4>Danh sách Vân Tay</h4>
+                    <!-- Trường tìm kiếm -->
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên ngón hoặc chủ sở hữu..." />
+
+                    <!-- Bảng danh sách vân tay -->
+                    <div class="tableContainer">
+                        <table id="fingerprintTable">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Chủ sở hữu</th>
+                                    <th>Email</th>
+                                    <th>Tên bàn tay</th>
+                                    <th>Tên ngón</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container thông báo xác nhận -->
+            <div id="confirmationContainer" class="delete-container" style="display: none">
+                <h2>Xác nhận</h2>
+                <p>Bạn có chắc chắn muốn chọn vân tay này?</p>
+                <button id="backButton">Quay về</button>
+                <button id="confirmButton-delete">Xác nhận</button>
+            </div>
+        </div>
+
+        <!-- Thông báo thành công -->
+        <div id="successNotification" class="notification-delete"></div>
+
+        <!-- thông báo thay đổi mật khẩu -->
+        <div class="modal4">
+            <div class="modal-content4">
+                <span class="close4">&times;</span>
+                <h2>Đổi Mật Khẩu</h2>
+
+                <!-- Trường nhập mật khẩu cũ -->
+                <label for="oldPassword">Nhập mật khẩu cũ</label>
+                <input type="password" id="oldPassword" pattern="[0-9]{4} placeholder="Mật khẩu cũ" />
+
+                <!-- Trường nhập mật khẩu mới -->
+                <label for="newPassword">Nhập mật khẩu mới</label>
+                <input type="password" id="newPassword" pattern="[0-9]{4} placeholder="Mật khẩu mới" />
+
+                <!-- Trường nhập lại mật khẩu mới -->
+                <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+                <input type="password" id="confirmPassword" pattern="[0-9]{4} placeholder="Nhập lại mật khẩu mới" />
+
+                <!-- Nút xác nhận -->
+                <button id="confirmButton">Xác nhận</button>
+
+                <!-- Thông báo khi nhấn nút xác nhận -->
+                <div id="passwordNotification" class="notification-password"></div>
+            </div>
+        </div>
+
+        <div id="overlay" style="display: none;"></div>
+        <!-- Để hiển thị trạng thái gửi email -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script src="/js/iot.js"></script>
+        <script src="/js/systemManagement.js"></script>
+    </body>
+</html>
